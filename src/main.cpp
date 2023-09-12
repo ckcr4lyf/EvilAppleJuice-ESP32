@@ -1,8 +1,6 @@
-// ESP32 Arduino implementation of Apple Juice
-// Author: Ronald Stoner 
-// Github: https://github.com/ronaldstoner
-
+// This example takes heavy inpsiration from the ESP32 example by ronaldstoner
 // Based on the previous work of chipik / _hexway / ECTO-1A & SAY-10
+// See the README for more info
 #include <Arduino.h>
 
 #include <BLEDevice.h>
