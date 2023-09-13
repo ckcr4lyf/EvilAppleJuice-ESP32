@@ -8,6 +8,10 @@ Confirmed on:
 * iPhone 14 Pro (running iOS 16.6.1)
 * iPhone 11 (running iOS 16.6.1)
 
+### Video Demo
+
+Single ESP32 vs. iPhone 14 Pro @ iOS 16.6.1
+
 https://github.com/ECTO-1A/AppleJuice/assets/6680615/47466ed6-03c9-43b2-a0d0-aac2e2aaa228
 
 ## Notable Differences
