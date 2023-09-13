@@ -2,6 +2,12 @@
 
 Based off of the work of [ronaldstoner](https://github.com/ronaldstoner) in the [AppleJuice repository](https://github.com/ECTO-1A/AppleJuice/blob/e6a61f6a199075f5bb5b1a00768e317571d25bb9/ESP32-Arduino/applejuice.ino).
 
+With the randomization optimizations it can render an iPhone almost useless with a single ESP32 (a new notification as soon as you close the old one).
+
+Confirmed on:
+* iPhone 14 Pro (running iOS 16.6.1)
+* iPhone 11 (running iOS 16.6.1)
+
 ## Notable Differences
 
 This implementation makes the following changes:
@@ -20,4 +26,3 @@ Clone the repo, and easiest would be to use VS Code w/ PlatformIO to upload it t
 
 This project has been tested on an [ESP32-C3 from AirM2M](https://wiki.luatos.com/chips/esp32c3/board.html).
 
-**NOTE: I have not yet seen the iPhone behavior because I don't own one. I will update the README with results when I have them.**
