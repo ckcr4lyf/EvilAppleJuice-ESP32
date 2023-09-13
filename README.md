@@ -12,6 +12,8 @@ Confirmed on:
 Not working on:
 * iPhone 4S (running iOS 10.3 (14E277))
 
+https://github.com/ECTO-1A/AppleJuice/assets/6680615/47466ed6-03c9-43b2-a0d0-aac2e2aaa228
+
 ## Notable Differences
 
 This implementation makes the following changes:
