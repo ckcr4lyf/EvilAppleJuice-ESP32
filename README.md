@@ -7,6 +7,10 @@ With the randomization optimizations it can render an iPhone almost useless with
 Confirmed on:
 * iPhone 14 Pro (running iOS 16.6.1)
 * iPhone 11 (running iOS 16.6.1)
+* iPhone X (running iOS 14.8 (18H17)) - only "AppleTV Keyboard", "TV Color Balance", "AppleTV Setup", "AppleTV Homekit Setup", "AppleTV New User".
+
+Not working on:
+* iPhone 4S (running iOS 10.3 (14E277))
 
 ### Video Demo
 
