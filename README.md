@@ -12,6 +12,9 @@ Confirmed on:
 Not working on:
 * iPhone 4S (running iOS 10.3 (14E277))
 
+Other observations:
+* Doesn't seem to spawn notifications if Keyboard is open / Camera is open
+
 ### Video Demo
 
 Single ESP32 vs. iPhone 14 Pro @ iOS 16.6.1

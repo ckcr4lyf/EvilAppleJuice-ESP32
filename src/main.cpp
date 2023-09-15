@@ -7,7 +7,7 @@
 #include <BLEUtils.h>
 #include <BLEServer.h>
 
-#include "devices.h"
+#include "devices.hpp"
 
 BLEAdvertising *pAdvertising;  // global variable
 uint32_t delaySeconds = 1;
