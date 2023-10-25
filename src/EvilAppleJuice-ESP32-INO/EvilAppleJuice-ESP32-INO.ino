@@ -7,7 +7,6 @@
 #include <BLEServer.h>
 
 BLEAdvertising *pAdvertising;  // global variable
-uint32_t delaySeconds = 1;
 
 const uint8_t DEVICES[][31] = {
   {0x1e, 0xff, 0x4c, 0x00, 0x07, 0x19, 0x07, 0x02, 0x20, 0x75, 0xaa, 0x30, 0x01, 0x00, 0x00, 0x45, 0x12, 0x12, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
@@ -45,9 +44,6 @@ const uint8_t SHORT_DEVICES[][23] = {
 };
 
 void setup() {
-  Serial.begin(115200);
-  Serial.println("Starting ESP32 BLE");
-
   BLEDevice::init("AirPods 69");
 
   // Create the BLE Server
@@ -128,8 +124,8 @@ void loop() {
   //pAdvertising->setMaxPreferred(0x20);
 
   // Start advertising
-  Serial.println("Sending Advertisement...");
+  delay(40);
   pAdvertising->start();
-  delay(delaySeconds * 1000); // delay for delaySeconds seconds
+  delay(20);
   pAdvertising->stop();
 }
