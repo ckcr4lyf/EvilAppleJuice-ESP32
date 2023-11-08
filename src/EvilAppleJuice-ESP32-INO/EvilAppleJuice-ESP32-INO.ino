@@ -7,7 +7,7 @@
 #include <BLEServer.h>
 
 BLEAdvertising *pAdvertising;  // global variable
-uint32_t delaySeconds = 1;
+uint32_t delayMilliseconds = 1000;
 
 const uint8_t DEVICES[][31] = {
   {0x1e, 0xff, 0x4c, 0x00, 0x07, 0x19, 0x07, 0x02, 0x20, 0x75, 0xaa, 0x30, 0x01, 0x00, 0x00, 0x45, 0x12, 0x12, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00},
@@ -130,6 +130,6 @@ void loop() {
   // Start advertising
   Serial.println("Sending Advertisement...");
   pAdvertising->start();
-  delay(delaySeconds * 1000); // delay for delaySeconds seconds
+  delay(delayMilliseconds); // delay for delayMilliseconds ms
   pAdvertising->stop();
 }
