@@ -11,6 +11,7 @@ Based off of the work of [ronaldstoner](https://github.com/ronaldstoner) in the 
 With the randomization optimizations it can render an iPhone almost useless with a single ESP32 (a new notification as soon as you close the old one).
 
 Confirmed on:
+* iPhone 14 Pro Max (running iOS 17.2 b3) (See #19)
 * iPhone 14 Pro (running iOS 16.6.1)
 * iPhone 13 Pro (TBD which iOS)
 * iPhone 11 (running iOS 16.6.1)
