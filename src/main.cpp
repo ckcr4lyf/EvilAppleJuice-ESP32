@@ -60,7 +60,7 @@ void loop() {
     int index = random(17);
     oAdvertisementData.addData(std::string((char*)DEVICES[index], 31));
   } else {
-    int index = random(12);
+    int index = random(13);
     oAdvertisementData.addData(std::string((char*)SHORT_DEVICES[index], 23));
   }
 
