@@ -39,7 +39,7 @@ This implementation makes the following changes:
 * Random source MAC address (including `BLE_ADDR_TYPE_RANDOM`)
 * Randomly pick BLE Advertisement Type ([this may lead to more success](https://github.com/ECTO-1A/AppleJuice/pull/25))
 * Randomly pick one of the possible devices
-* Sets the ESP32 BLE Power to 9dBm to increase range
+* Sets the ESP32 BLE Power to the maximum (9dBm) to increase range
 
 And it makes these random choices every time it runs (default re-advertise every second).
 
