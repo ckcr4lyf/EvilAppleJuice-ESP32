@@ -62,7 +62,7 @@ def main():
         return
     try:
         while True:
-            bt_packet = 
+            bt_packet = device_packets[random.randint(0, len(device_packets) - 1)]
             struct_params = [20, 20, 3, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0]
             cmd_pkt = struct.pack("<HHBBB6BBB", *struct_params)
             bluez.hci_send_cmd(sock, 0x08, 0x0006, cmd_pkt)
