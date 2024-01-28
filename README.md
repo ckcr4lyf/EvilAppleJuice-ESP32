@@ -50,5 +50,5 @@ Given the 29 devices and the 3 advertisement types, there are a total of 87 uniq
 Clone the repo, and easiest would be to use VS Code w/ PlatformIO to upload it to your ESP32.
 
 This project has been tested on an [ESP32-C3 from AirM2M](https://wiki.luatos.com/chips/esp32c3/board.html).
-Testing on RPi and other python plattforms has not been done jet
+
 
