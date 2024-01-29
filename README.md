@@ -10,7 +10,7 @@ Based off of the work of [ronaldstoner](https://github.com/ronaldstoner) in the 
 
 Also thanks to [simondankelmann](https://github.com/simondankelmann) for their discoveries in new advertising messages to pop-up new notifications in iOS devices [source](https://github.com/simondankelmann/Bluetooth-LE-Spam/blob/main/app/src/main/java/de/simon/dankelmann/bluetoothlespam/AdvertisementSetGenerators/ContinuityActionModalAdvertisementSetGenerator.kt)
 
-With the randomization optimizations it can render an iPhone almost useless with a single ESP32 or RPi(a new notification as soon as you close the old one).
+With the randomization optimizations it can render an iPhone almost useless with a single ESP32 (a new notification as soon as you close the old one).
 
 Confirmed on:
 * iPhone 15 (running iOS 17.1.2)
