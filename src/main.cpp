@@ -10,7 +10,7 @@
 #include "devices.hpp"
 
 BLEAdvertising *pAdvertising;  // global variable
-uint32_t delayMilliseconds = 1000;
+uint32_t delayMilliseconds = 200;
 
 void setup() {
   Serial.begin(115200);
@@ -55,12 +55,12 @@ void loop() {
   // Randomly pick data from one of the devices
   // First decide short or long
   // 0 = long (headphones), 1 = short (misc stuff like Apple TV)
-  int device_choice = random(2);
+  int device_choice = 1;
   if (device_choice == 0){
     int index = random(17);
     oAdvertisementData.addData(std::string((char*)DEVICES[index], 31));
   } else {
-    int index = random(13);
+    int index = 12;
     oAdvertisementData.addData(std::string((char*)SHORT_DEVICES[index], 23));
   }
 
