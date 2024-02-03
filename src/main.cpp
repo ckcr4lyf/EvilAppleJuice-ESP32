@@ -23,6 +23,9 @@ void setup() {
 
   BLEDevice::init("AirPods 69");
 
+  // Increase the BLE Power to 9dBm (MAX)
+  esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P9);
+
   // Create the BLE Server
   BLEServer *pServer = BLEDevice::createServer();
   pAdvertising = pServer->getAdvertising();
