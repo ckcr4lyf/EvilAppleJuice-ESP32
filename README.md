@@ -19,7 +19,7 @@ Confirmed on:
 * iPhone 13 Pro (running iOS 17.4 (21E5184k))
 * iPhone 11 (running iOS 16.6.1)
 * iPhone X (running iOS 14.8 (18H17)) - only "AppleTV Keyboard", "TV Color Balance", "AppleTV Setup", "AppleTV Homekit Setup", "AppleTV New User".
-* iPad Pro 11' (running iPadOS 17.3 (21D50))
+* iPad Pro 11 (running iPadOS 17.3 (21D50))
 
 Not working on:
 * iPhone 4S (running iOS 10.3 (14E277))
