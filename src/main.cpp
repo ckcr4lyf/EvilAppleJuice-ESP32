@@ -7,8 +7,6 @@
 #include <BLEUtils.h>
 #include <BLEServer.h>
 
-#include <esp_gap_ble_api.h>
-
 #include "devices.hpp"
 
 BLEAdvertising *pAdvertising;  // global variable
