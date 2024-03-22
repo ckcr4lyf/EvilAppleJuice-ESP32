@@ -1,0 +1,78 @@
+name: Build, Upload and Release Firmware
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  get_envs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install PlatformIO Core
+        run: pip install --upgrade platformio
+      - name: Get default environments
+        id: envs
+        run: |
+          echo "environments=$(pio project config --json-output | jq -cr '[.[][0] | select(contains("env")) | split(":")[1]]')" >> $GITHUB_OUTPUT
+    outputs:
+      environments: ${{ steps.envs.outputs.environments }}
+
+  build:
+    needs: get_envs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: ${{ fromJSON(needs.get_envs.outputs.environments) }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install PlatformIO Core
+        run: pip install --upgrade platformio
+
+      - name: Build PlatformIO Project
+        run: pio run -e ${{ matrix.environment }}
+
+      - name: Locate and rename firmware binary
+        id: firmware
+        run: |
+          DATE=$(date +'%Y%m%d')
+          PROJECT_NAME=${GITHUB_REPOSITORY##*/}
+          FIRMWARE_PATH=$(find .pio -name 'firmware.bin')
+          FILENAME="${PROJECT_NAME}-${{ matrix.environment }}-${DATE}.bin"
+          mv "$FIRMWARE_PATH" "$FILENAME"
+          echo "DATE=$DATE" >> $GITHUB_ENV
+          echo "PROJECT_NAME=$PROJECT_NAME" >> $GITHUB_ENV
+          echo "FILENAME=$FILENAME" >> $GITHUB_ENV
+          echo "::set-output name=DATE::$DATE"  # Set output
+        shell: bash
+
+      - name: Upload firmware binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware-${{ matrix.environment }}
+          path: ${{ env.FILENAME }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download firmware binary
+        uses: actions/download-artifact@v4
+        with:
+          path: build
+          pattern: firmware-*
+          merge-multiple: true
+
+      - name: Publish release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: latest
+          prerelease: false
+          files: build/*.bin
