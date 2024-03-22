@@ -23,8 +23,9 @@ void setup() {
 
   BLEDevice::init("AirPods 69");
 
-  // Increase the BLE Power to 9dBm (MAX)
-  esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P9);
+  // Increase the BLE Power to 21dBm (MAX)
+  // https://docs.espressif.com/projects/esp-idf/en/stable/esp32c3/api-reference/bluetooth/controller_vhci.html
+  esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P21);
 
   // Create the BLE Server
   BLEServer *pServer = BLEDevice::createServer();
@@ -114,4 +115,22 @@ void loop() {
   digitalWrite(13, LOW);
   delay(delayMilliseconds); // delay for delayMilliseconds ms
   pAdvertising->stop();
+
+  // Random signal strength increases the difficulty of tracking the signal
+  int rand_val = random(100);  // Generate a random number between 0 and 99
+  if (rand_val < 70) {  // 70% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P21);
+  } else if (rand_val < 80) {  // 10% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P18);
+  } else if (rand_val < 90) {  // 10% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P15);
+  } else if (rand_val < 95) {  // 5% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P12);
+  } else if (rand_val < 98) {  // 3% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P9);
+  } else if (rand_val < 99) {  // 1% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P6);
+  } else {  // 1% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_N0);
+  }
 }
