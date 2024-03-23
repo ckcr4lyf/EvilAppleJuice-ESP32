@@ -9,6 +9,12 @@
 
 #include "devices.hpp"
 
+#ifdef CONFIG_IDF_TARGET_ESP32C3
+#define MAX_TX_POWER ESP_PWR_LVL_P21
+#else
+#define MAX_TX_POWER ESP_PWR_LVL_P9
+#endif
+
 BLEAdvertising *pAdvertising;  // global variable
 uint32_t delayMilliseconds = 1000;
 
@@ -25,7 +31,7 @@ void setup() {
 
   // Increase the BLE Power to 21dBm (MAX)
   // https://docs.espressif.com/projects/esp-idf/en/stable/esp32c3/api-reference/bluetooth/controller_vhci.html
-  esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P21);
+  esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, MAX_TX_POWER);
 
   // Create the BLE Server
   BLEServer *pServer = BLEDevice::createServer();
@@ -119,18 +125,14 @@ void loop() {
   // Random signal strength increases the difficulty of tracking the signal
   int rand_val = random(100);  // Generate a random number between 0 and 99
   if (rand_val < 70) {  // 70% probability
-      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P21);
-  } else if (rand_val < 80) {  // 10% probability
-      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P18);
-  } else if (rand_val < 90) {  // 10% probability
-      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P15);
-  } else if (rand_val < 95) {  // 5% probability
-      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P12);
-  } else if (rand_val < 98) {  // 3% probability
-      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P9);
-  } else if (rand_val < 99) {  // 1% probability
-      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P6);
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, MAX_TX_POWER);
+  } else if (rand_val < 85) {  // 15% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 1));
+  } else if (rand_val < 95) {  // 10% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 2));
+  } else if (rand_val < 95) {  // 4% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 3));
   } else {  // 1% probability
-      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_N0);
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 4));
   }
 }
