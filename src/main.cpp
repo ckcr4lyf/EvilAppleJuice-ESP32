@@ -9,10 +9,13 @@
 
 #include "devices.hpp"
 
-#ifdef CONFIG_IDF_TARGET_ESP32C3
-#define MAX_TX_POWER ESP_PWR_LVL_P21
+// Bluetooth maximum transmit power
+#if defined(CONFIG_IDF_TARGET_ESP32C3) || defined(CONFIG_IDF_TARGET_ESP32C2) || defined(CONFIG_IDF_TARGET_ESP32S3)
+#define MAX_TX_POWER ESP_PWR_LVL_P21  // ESP32C3、ESP32C2、ESP32S3
+#elif defined(CONFIG_IDF_TARGET_ESP32H2) || defined(CONFIG_IDF_TARGET_ESP32C6)
+#define MAX_TX_POWER ESP_PWR_LVL_P20  // ESP32H2、ESP32C6
 #else
-#define MAX_TX_POWER ESP_PWR_LVL_P9
+#define MAX_TX_POWER ESP_PWR_LVL_P9   // Default
 #endif
 
 BLEAdvertising *pAdvertising;  // global variable
