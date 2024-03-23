@@ -130,7 +130,7 @@ void loop() {
       esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 1));
   } else if (rand_val < 95) {  // 10% probability
       esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 2));
-  } else if (rand_val < 95) {  // 4% probability
+  } else if (rand_val < 99) {  // 4% probability
       esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 3));
   } else {  // 1% probability
       esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 4));
