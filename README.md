@@ -46,10 +46,39 @@ And it makes these random choices every time it runs (default re-advertise every
 
 Given the 29 devices and the 3 advertisement types, there are a total of 87 unique possible advertisements (ignoring the random source MAC) possible, of which one is broadcast every second.
 
-## Usage
+## Compatibility
 
-Clone the repo, and easiest would be to use VS Code w/ PlatformIO to upload it to your ESP32.
+This project has been tested on:
 
-This project has been tested on an [ESP32-C3 from AirM2M](https://wiki.luatos.com/chips/esp32c3/board.html).
++ [ESP32-C3 from AirM2M](https://wiki.luatos.com/chips/esp32c3/board.html).
++ [M5Stick-C](https://shop.m5stack.com/products/stick-c)
 
+## How to use
 
+This project offers an easy way to update your ESP32 device with the latest firmware, catering to both technical and less technical users. Here's how you can get started:
+
+### Quick Start with Pre-compiled Firmware
+
+1. **Download the Firmware**: Go to the [Releases](https://github.com/ckcr4lyf/EvilAppleJuice-ESP32/releases/tag/latest) section of this GitHub repository and download the latest `.bin` file.
+2. **Connect Your Device**: Make sure your ESP32 device is connected to your computer via USB.
+3. **Flash the Firmware**:
+    - **Using webesp**: Navigate to the online esptool (eg: <https://lsong.org/webesp>), select your `.bin` file, and follow the instructions to flash your device directly from your browser.
+    - **Using esptool**: Open a command line or terminal. Execute the following command, replacing `<YourSerialPort>` with your device's serial port and `<FirmwareFile.bin>` with the path to your downloaded `.bin` file:
+      ```shell
+      esptool.py --port /dev/cu.usbserial-xxx write_flash 0x10000 ~/Downloads/EvilAppleJuice-ESP32-esp32dev-20240328.bin
+      ```
+
+This method is straightforward and does not require in-depth programming knowledge, making it accessible for everyone.
+
+### Build from Source
+
+If you prefer to compile the firmware yourself or wish to contribute to the project, here's how you can set up your environment:
+
+1. **Clone the Repository**: Use your preferred method to clone this repository to your local machine.
+2. **Setup Your Development Environment**: Download and install Visual Studio Code (VS Code) and the PlatformIO extension. This setup is recommended for compiling and uploading the firmware to your ESP32 device.
+3. **Open the Project in VS Code**: Navigate to the cloned project folder and open it in VS Code. PlatformIO will automatically handle the project configuration.
+4. **Upload the Firmware**: With your ESP32 device connected to your computer, use the PlatformIO interface in VS Code to compile and upload the firmware.
+
+Happy hacking :>
+
+---
