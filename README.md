@@ -52,4 +52,16 @@ Clone the repo, and easiest would be to use VS Code w/ PlatformIO to upload it t
 
 This project has been tested on an [ESP32-C3 from AirM2M](https://wiki.luatos.com/chips/esp32c3/board.html).
 
+### Via Arduino-CLI
 
+#### Windows
+
+If you've setup the Arduino CLI, e.g. via https://wellys.com/posts/esp32_cli/ , then you can `cd` into the `src` folder, and run the following:
+
+```
+arduino-cli compile --fqbn esp32:esp32:esp32c6 EvilAppleJuice-ESP32-INO -v
+arduino-cli upload -p COM4 --fqbn esp32:esp32:esp32c6 EvilAppleJuice-ESP32-INO -v
+arduino-cli monitor -c baudrate=115200 -p COM4
+```
+
+Replace `COM4` with the port the ESP32 is on, and `esp32c6` with the appropriate board.
