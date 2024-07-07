@@ -6,6 +6,15 @@
 #include <BLEUtils.h>
 #include <BLEServer.h>
 
+// Bluetooth maximum transmit power
+#if defined(CONFIG_IDF_TARGET_ESP32C3) || defined(CONFIG_IDF_TARGET_ESP32C2) || defined(CONFIG_IDF_TARGET_ESP32S3)
+#define MAX_TX_POWER ESP_PWR_LVL_P21  // ESP32C3 ESP32C2 ESP32S3
+#elif defined(CONFIG_IDF_TARGET_ESP32H2) || defined(CONFIG_IDF_TARGET_ESP32C6)
+#define MAX_TX_POWER ESP_PWR_LVL_P20  // ESP32H2 ESP32C6
+#else
+#define MAX_TX_POWER ESP_PWR_LVL_P9   // Default
+#endif
+
 BLEAdvertising *pAdvertising;  // global variable
 uint32_t delayMilliseconds = 1000;
 
@@ -89,8 +98,9 @@ void setup() {
 
   BLEDevice::init("AirPods 69");
 
-  // Increase BLE Power to 9dBm (MAX)
-  esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_P9);
+  // Increase the BLE Power to 21dBm (MAX)
+  // https://docs.espressif.com/projects/esp-idf/en/stable/esp32c3/api-reference/bluetooth/controller_vhci.html
+  esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, MAX_TX_POWER);
   
   // Create the BLE Server
   BLEServer *pServer = BLEDevice::createServer();
@@ -111,9 +121,9 @@ void loop() {
     // It seems for some reason first 4 bits
     // Need to be high (aka 0b1111), so we 
     // OR with 0xF0
-    //if (i == 0){
-      //dummy_addr[i] |= 0xF0;
-    //}
+    if (i == 0){
+      dummy_addr[i] |= 0xF0;
+    }
   }
 
   BLEAdvertisementData oAdvertisementData = BLEAdvertisementData();
@@ -125,10 +135,10 @@ void loop() {
   //int device_choice = 1;
   if (device_choice == 0){
     int index = random(17);
-    oAdvertisementData.addData(std::string((char*)DEVICES[index], 31));
+    oAdvertisementData.addData(std::string((char*)DEVICES[index], 31).c_str());
   } else {
     int index = random(13);
-    oAdvertisementData.addData(std::string((char*)SHORT_DEVICES[index], 23));
+    oAdvertisementData.addData(std::string((char*)SHORT_DEVICES[index], 23).c_str());
   }
 
   /*  Page 191 of Apple's "Accessory Design Guidelines for Apple Devices (Release R20)" recommends to use only one of
@@ -174,4 +184,18 @@ void loop() {
   pAdvertising->start();
   delay(delayMilliseconds); // delay for delayMilliseconds ms
   pAdvertising->stop();
+
+  // Random signal strength increases the difficulty of tracking the signal
+  int rand_val = random(100);  // Generate a random number between 0 and 99
+  if (rand_val < 70) {  // 70% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, MAX_TX_POWER);
+  } else if (rand_val < 85) {  // 15% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 1));
+  } else if (rand_val < 95) {  // 10% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 2));
+  } else if (rand_val < 99) {  // 4% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 3));
+  } else {  // 1% probability
+      esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, (esp_power_level_t)(MAX_TX_POWER - 4));
+  }
 }
