@@ -5,6 +5,7 @@
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
+#include <esp_arduino_version.h>
 
 // Bluetooth maximum transmit power
 #if defined(CONFIG_IDF_TARGET_ESP32C3) || defined(CONFIG_IDF_TARGET_ESP32C2) || defined(CONFIG_IDF_TARGET_ESP32S3)
@@ -132,13 +133,24 @@ void loop() {
   // First decide short or long
   // 0 = long (headphones), 1 = short (misc stuff like Apple TV)
   int device_choice = random(2);
-  //int device_choice = 1;
   if (device_choice == 0){
     int index = random(17);
-    oAdvertisementData.addData(std::string((char*)DEVICES[index], 31).c_str());
+    #ifdef ESP_ARDUINO_VERSION_MAJOR
+      #if ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(3, 0, 0)
+          oAdvertisementData.addData(String((char*)DEVICES[index], 31));
+      #else
+          oAdvertisementData.addData(std::string((char*)DEVICES[index], 31));
+      #endif
+    #endif
   } else {
     int index = random(13);
-    oAdvertisementData.addData(std::string((char*)SHORT_DEVICES[index], 23).c_str());
+    #ifdef ESP_ARDUINO_VERSION_MAJOR
+      #if ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(3, 0, 0)
+          oAdvertisementData.addData(String((char*)SHORT_DEVICES[index], 23));
+      #else
+          oAdvertisementData.addData(std::string((char*)SHORT_DEVICES[index], 23));
+      #endif
+    #endif
   }
 
   /*  Page 191 of Apple's "Accessory Design Guidelines for Apple Devices (Release R20)" recommends to use only one of
