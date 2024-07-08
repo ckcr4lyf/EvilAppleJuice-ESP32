@@ -6,6 +6,7 @@
 #include <BLEDevice.h>
 #include <BLEUtils.h>
 #include <BLEServer.h>
+#include <esp_arduino_version.h>
 
 #include "devices.hpp"
 
@@ -71,10 +72,22 @@ void loop() {
   int device_choice = random(2);
   if (device_choice == 0){
     int index = random(17);
-    oAdvertisementData.addData(std::string((char*)DEVICES[index], 31));
+    #ifdef ESP_ARDUINO_VERSION_MAJOR
+      #if ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(3, 0, 0)
+          oAdvertisementData.addData(String((char*)DEVICES[index], 31));
+      #else
+          oAdvertisementData.addData(std::string((char*)DEVICES[index], 31));
+      #endif
+    #endif
   } else {
     int index = random(13);
-    oAdvertisementData.addData(std::string((char*)SHORT_DEVICES[index], 23));
+    #ifdef ESP_ARDUINO_VERSION_MAJOR
+      #if ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(3, 0, 0)
+          oAdvertisementData.addData(String((char*)SHORT_DEVICES[index], 23));
+      #else
+          oAdvertisementData.addData(std::string((char*)SHORT_DEVICES[index], 23));
+      #endif
+    #endif
   }
 
 /*  Page 191 of Apple's "Accessory Design Guidelines for Apple Devices (Release R20)" recommends to use only one of
