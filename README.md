@@ -65,3 +65,7 @@ arduino-cli monitor -c baudrate=115200 -p COM4
 ```
 
 Replace `COM4` with the port the ESP32 is on, and `esp32c6` with the appropriate board.
+
+### Spamming a specific device
+
+Some basic instructions are here: https://github.com/ckcr4lyf/EvilAppleJuice-ESP32/issues/42#issuecomment-2294610072 , but if you're not a script kiddie you can probably figure it out.
