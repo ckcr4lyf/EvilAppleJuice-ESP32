@@ -33,6 +33,14 @@ Single ESP32 vs. iPhone 14 Pro @ iOS 16.6.1
 
 https://github.com/ECTO-1A/AppleJuice/assets/6680615/47466ed6-03c9-43b2-a0d0-aac2e2aaa228
 
+### Security Vulnerability?
+
+Since all we're doing is sending BLE advertisments from a "dumb" device, I argue there is no epxloit intent, just annoying.
+
+[I've asked over a year ago on the Apple forums](https://discussions.apple.com/thread/255127943), if it's possible to disable the feature where iDevices are eagerly awaiting advertisments and popping up notifications, but to no reply. Clearly Tim Apple^ thinks that he know how you should use your device better than you - in fact even if you disable Bluetooth from the quick settings or whatever its called, these will still keep coming - you need to go into settings and turn of Bluetooth completely. Which means you can't use your Airpods or whatever wireless audio device you purchased when they removed the 3.5mm jack. 
+
+*^ obviously I don't actually think Tim Cook is directly behind this, but rather Apple's smug nature of thinking they know what's best, and you're wrong if you don't think that's good design.*
+
 ## Notable Differences
 
 This implementation makes the following changes:
