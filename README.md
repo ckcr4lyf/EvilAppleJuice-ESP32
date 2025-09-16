@@ -60,6 +60,16 @@ Clone the repo, and easiest would be to use VS Code w/ PlatformIO to upload it t
 
 This project has been tested on an [ESP32-C3 from AirM2M](https://wiki.luatos.com/chips/esp32c3/board.html).
 
+### Serial Port on Linux
+
+For me, plugging in a ESP32-C3 assigns it to `/dev/ttyACM0`.
+
+To allow the serial port to be writable by a user, you can do:
+
+```
+sudo chmod 666 /dev/ttyACM0
+```
+
 ### Via Arduino-CLI
 
 #### Windows

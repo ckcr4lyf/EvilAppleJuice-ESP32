@@ -17,7 +17,7 @@
 #endif
 
 BLEAdvertising *pAdvertising;  // global variable
-uint32_t delayMilliseconds = 1000;
+uint32_t delayMilliseconds = 100;
 
 /*
   These are audio devices: wireless headphones / earbuds
