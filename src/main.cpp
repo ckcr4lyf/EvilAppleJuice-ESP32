@@ -20,7 +20,7 @@
 #endif
 
 BLEAdvertising *pAdvertising;  // global variable
-uint32_t delayMilliseconds = 1000;
+uint32_t delayMilliseconds = 100;
 
 void setup() {
   Serial.begin(115200);
@@ -71,7 +71,7 @@ void loop() {
   // 0 = long (headphones), 1 = short (misc stuff like Apple TV)
   int device_choice = random(2);
   if (device_choice == 0){
-    int index = random(17);
+    int index = random(22);
     #ifdef ESP_ARDUINO_VERSION_MAJOR
       #if ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(3, 0, 0)
           oAdvertisementData.addData(String((char*)DEVICES[index], 31));
