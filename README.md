@@ -2,6 +2,14 @@
 
 Spam BLE advertisements on iPhones!
 
+### iPhone Duo Demo
+
+|Airpods Spam|Software Update|
+|-------------------|-------------|
+|<video controls width="250" src="https://github.com/user-attachments/assets/b3b8fe10-3fdd-43fc-b2ff-6ea477925c15"></video>|<video controls width="250" src="https://github.com/user-attachments/assets/c1ad62b4-e6a4-4f0c-bdf8-b65021da2789"></video>|
+
+### Older iPhones
+
 |iPhone 15s (latest)|Older iPhones|
 |-------------------|-------------|
 |<video controls width="250" src="https://user-images.githubusercontent.com/6680615/274864225-53ed6d7c-0569-4f22-b55b-bc9973c4bc93.mp4"></video>|<video controls width="250" src="https://user-images.githubusercontent.com/6680615/274864287-c6e871fd-9fdf-4507-ae21-a566beead5cc.mp4"></video>|
